@@ -1,4 +1,4 @@
-package abstractPattern;
+package org.abstractPattern;
 
 public class LightThemeCheckbox implements Checkbox{
     @Override
