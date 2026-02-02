@@ -94,7 +94,7 @@ This allows the system to:
 ---
 
 ## 🏗️ Design Structure
-
+**
 Client
 ↓
 Abstract Factory (UIFactory)
@@ -110,12 +110,12 @@ Abstract Products
 Concrete Products
 ├── LightButton / DarkButton
 └── LightCheckbox / DarkCheckbox
-
+**
 
 ---
 
 ## 📁 Project Structure
-
+**
 abstract-factory/
 ├── factory/
 │ ├── UIFactory.java
@@ -132,7 +132,7 @@ abstract-factory/
 │ ├── Application.java
 │ └── Main.java
 └── README.md
-
+**
 
 ---
 
