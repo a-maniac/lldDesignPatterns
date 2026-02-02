@@ -96,40 +96,98 @@ This allows the system to:
 ## 🏗️ Design Structure
 
 flowchart TD
-    Client["Client<br/>(Application)"] --> UIFactory["Abstract Factory<br/>(UIFactory)"]
+    %% Styling
+    classDef client fill:#1f2933,stroke:#38bdf8,stroke-width:2px,color:#e5e7eb
+    classDef factory fill:#111827,stroke:#a78bfa,stroke-width:2px,color:#e5e7eb
+    classDef product fill:#020617,stroke:#34d399,stroke-width:2px,color:#e5e7eb
 
-    UIFactory --> LightFactory["Concrete Factory<br/>(LightThemeFactory)"]
-    UIFactory --> DarkFactory["Concrete Factory<br/>(DarkThemeFactory)"]
+    %% Nodes
+    Client["Client<br/>(Application)"]
+    UIFactory["Abstract Factory<br/>(UIFactory)"]
 
-    LightFactory --> LB["LightButton"]
-    LightFactory --> LC["LightCheckbox"]
+    LightFactory["Concrete Factory<br/>(LightThemeFactory)"]
+    DarkFactory["Concrete Factory<br/>(DarkThemeFactory)"]
 
-    DarkFactory --> DB["DarkButton"]
-    DarkFactory --> DC["DarkCheckbox"]
+    LB["LightButton"]
+    LC["LightCheckbox"]
 
-    LB --> Button["Abstract Product<br/>(Button)"]
+    DB["DarkButton"]
+    DC["DarkCheckbox"]
+
+    Button["Abstract Product<br/>(Button)"]
+    Checkbox["Abstract Product<br/>(Checkbox)"]
+
+    %% Flow
+    Client --> UIFactory
+    UIFactory --> LightFactory
+    UIFactory --> DarkFactory
+
+    LightFactory --> LB
+    LightFactory --> LC
+
+    DarkFactory --> DB
+    DarkFactory --> DC
+
+    LB --> Button
     DB --> Button
 
-    LC --> Checkbox["Abstract Product<br/>(Checkbox)"]
+    LC --> Checkbox
     DC --> Checkbox
+
+    %% Classes
+    class Client client
+    class UIFactory,LightFactory,DarkFactory factory
+    class LB,LC,DB,DC,Button,Checkbox product
 flowchart LR
+    %% Styling
+    classDef root fill:#020617,stroke:#fbbf24,stroke-width:2px,color:#e5e7eb
+    classDef folder fill:#111827,stroke:#38bdf8,stroke-width:2px,color:#e5e7eb
+    classDef file fill:#1f2933,stroke:#34d399,stroke-width:1.5px,color:#e5e7eb
+
+    %% Nodes
     Root["abstract-factory/"]
 
-    Root --> Factory["factory/"]
-    Root --> Products["products/"]
-    Root --> Client["client/"]
-    Root --> Readme["README.md"]
+    Factory["factory/"]
+    Products["products/"]
+    Client["client/"]
+    Readme["README.md"]
 
-    Factory --> UIF["UIFactory.java"]
-    Factory --> LTF["LightThemeFactory.java"]
-    Factory --> DTF["DarkThemeFactory.java"]
+    UIF["UIFactory.java"]
+    LTF["LightThemeFactory.java"]
+    DTF["DarkThemeFactory.java"]
 
-    Products --> Btn["Button.java"]
-    Products --> Cb["Checkbox.java"]
-    Products --> LB["LightButton.java"]
-    Products --> LC["LightCheckbox.java"]
-    Products --> DB["DarkButton.java"]
-    Products --> DC["DarkCheckbox.java"]
+    Btn["Button.java"]
+    Cb["Checkbox.java"]
+    LB["LightButton.java"]
+    LC["LightCheckbox.java"]
+    DB["DarkButton.java"]
+    DC["DarkCheckbox.java"]
 
-    Client --> App["Application.java"]
-    Client --> Main["Main.java"]
+    App["Application.java"]
+    Main["Main.java"]
+
+    %% Flow
+    Root --> Factory
+    Root --> Products
+    Root --> Client
+    Root --> Readme
+
+    Factory --> UIF
+    Factory --> LTF
+    Factory --> DTF
+
+    Products --> Btn
+    Products --> Cb
+    Products --> LB
+    Products --> LC
+    Products --> DB
+    Products --> DC
+
+    Client --> App
+    Client --> Main
+
+    %% Classes
+    class Root root
+    class Factory,Products,Client folder
+    class UIF,LTF,DTF,Btn,Cb,LB,LC,DB,DC,App,Main,Readme file
+
