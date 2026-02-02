@@ -1,6 +1,61 @@
-Builder Pattern Implementation: BurgerMealThis repository contains a Java implementation of the Builder Design Pattern, using a BurgerMeal example to demonstrate how to construct complex objects step-by-step.📌 OverviewThe Builder Pattern is a creational design pattern that lets you construct complex objects step-by-step. Unlike other creational patterns, the Builder pattern does not require the product to have a common interface. This makes it possible to produce different types and representations of an object using the same construction code.Why use it?Avoids "Telescoping Constructors": No more giant constructors with 10+ parameters where you can't remember which String is which.Immutability: The BurgerMeal fields are final, ensuring that once a meal is built, it cannot be altered.Readability: The "Fluent API" style (withCheese(), withSide()) makes the code self-documenting.💻 Implementation DetailThe implementation uses a Static Inner Class (BurgerBuilder) to handle the construction logic.1. Mandatory vs. Optional ParametersIn this example:Mandatory: bun and patty (passed via the Builder constructor).Optional: hasCheese and side (set via setter-like methods).2. The Code structureJava// Usage Example
-BurgerMeal meal = new BurgerMeal.BurgerBuilder("Brioche", "Beef")
-                    .withCheese(true)
-                    .withSide("Fries")
-                    .build();
-🛠 How it WorksPrivate Constructor: The BurgerMeal constructor is private, meaning it can only be instantiated through the BurgerBuilder.Chaining: Each method in the builder (e.g., withSide) returns this (the builder instance itself), allowing for method chaining.The Build Step: The .build() method calls the private constructor of BurgerMeal, passing the current builder instance to populate the final object.🚀 Advantages in this ProjectFeatureBenefitEncapsulationConstruction logic is isolated from the main class.ControlYou can enforce validation before the build() method is called.FlexibilityYou can create different variations of a BurgerMeal without multiplying constructors.
+# 🍔 Builder Design Pattern — BurgerMeal (Java)
+
+---
+
+## 📌 Overview
+
+This project demonstrates the **Builder Design Pattern** using a `BurgerMeal` example.  
+The Builder Pattern is a **creational design pattern** that separates the **construction of a complex object** from its **final representation**.
+
+Instead of creating an object using a large constructor with many parameters, the builder allows the object to be constructed **step-by-step** using a fluent and readable API, while ensuring the final object remains **immutable and consistent**.
+
+---
+
+## 🧠 Why This Pattern Exists
+
+In real-world systems, domain objects often have:
+- Mandatory fields (must be provided)
+- Optional fields (can vary per use case)
+
+Using traditional constructors leads to:
+- Long parameter lists
+- Poor readability
+- Higher chance of passing values in the wrong order
+- Invalid or partially constructed objects
+
+### Example Without Builder
+```java
+BurgerMeal meal = new BurgerMeal("Sesame Bun", "Chicken Patty", true, "Fries");
+```
+---
+
+This code does not clearly express:
+
+What true means
+
+Which value represents which field
+
+Which fields are optional
+
+---
+
+### 🎯 Goals of This Implementation
+
+This implementation aims to:
+
+- Enforce required fields
+- Allow optional fields to be configured flexibly
+- Keep the final object immutable
+- Improve code readability
+- Make the system easy to extend
+
+---
+
+### Design Structure
+Client
+   |
+   v
+BurgerBuilder (Mutable, Step-by-step Construction)
+   |
+   v
+BurgerMeal (Immutable, Final Product)
