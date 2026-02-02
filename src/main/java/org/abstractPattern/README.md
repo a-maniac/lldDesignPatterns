@@ -95,46 +95,41 @@ This allows the system to:
 
 ## 🏗️ Design Structure
 
-```mermaid
 flowchart TD
-    Client --> UIFactory
-    UIFactory --> LightThemeFactory
-    UIFactory --> DarkThemeFactory
+    Client["Client<br/>(Application)"] --> UIFactory["Abstract Factory<br/>(UIFactory)"]
 
-    LightThemeFactory --> LightButton
-    LightThemeFactory --> LightCheckbox
+    UIFactory --> LightFactory["Concrete Factory<br/>(LightThemeFactory)"]
+    UIFactory --> DarkFactory["Concrete Factory<br/>(DarkThemeFactory)"]
 
-    DarkThemeFactory --> DarkButton
-    DarkThemeFactory --> DarkCheckbox
+    LightFactory --> LB["LightButton"]
+    LightFactory --> LC["LightCheckbox"]
 
-    LightButton --> Button
-    DarkButton --> Button
+    DarkFactory --> DB["DarkButton"]
+    DarkFactory --> DC["DarkCheckbox"]
 
-    LightCheckbox --> Checkbox
-    DarkCheckbox --> Checkbox
+    LB --> Button["Abstract Product<br/>(Button)"]
+    DB --> Button
 
+    LC --> Checkbox["Abstract Product<br/>(Checkbox)"]
+    DC --> Checkbox
+flowchart LR
+    Root["abstract-factory/"]
 
----
+    Root --> Factory["factory/"]
+    Root --> Products["products/"]
+    Root --> Client["client/"]
+    Root --> Readme["README.md"]
 
-## 📁 Project Structure
-**
-abstract-factory/
-├── factory/
-│ ├── UIFactory.java
-│ ├── LightThemeFactory.java
-│ └── DarkThemeFactory.java
-├── products/
-│ ├── Button.java
-│ ├── Checkbox.java
-│ ├── LightButton.java
-│ ├── LightCheckbox.java
-│ ├── DarkButton.java
-│ └── DarkCheckbox.java
-├── client/
-│ ├── Application.java
-│ └── Main.java
-└── README.md
-**
+    Factory --> UIF["UIFactory.java"]
+    Factory --> LTF["LightThemeFactory.java"]
+    Factory --> DTF["DarkThemeFactory.java"]
 
----
+    Products --> Btn["Button.java"]
+    Products --> Cb["Checkbox.java"]
+    Products --> LB["LightButton.java"]
+    Products --> LC["LightCheckbox.java"]
+    Products --> DB["DarkButton.java"]
+    Products --> DC["DarkCheckbox.java"]
 
+    Client --> App["Application.java"]
+    Client --> Main["Main.java"]
