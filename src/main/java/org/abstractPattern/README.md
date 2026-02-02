@@ -93,101 +93,24 @@ This allows the system to:
 
 ---
 
-## 🏗️ Design Structure
+## 🏗️ Design Structure (Universal Version)
 
-flowchart TD
-    %% Styling
-    classDef client fill:#1f2933,stroke:#38bdf8,stroke-width:2px,color:#e5e7eb
-    classDef factory fill:#111827,stroke:#a78bfa,stroke-width:2px,color:#e5e7eb
-    classDef product fill:#020617,stroke:#34d399,stroke-width:2px,color:#e5e7eb
-
-    %% Nodes
-    Client["Client<br/>(Application)"]
-    UIFactory["Abstract Factory<br/>(UIFactory)"]
-
-    LightFactory["Concrete Factory<br/>(LightThemeFactory)"]
-    DarkFactory["Concrete Factory<br/>(DarkThemeFactory)"]
-
-    LB["LightButton"]
-    LC["LightCheckbox"]
-
-    DB["DarkButton"]
-    DC["DarkCheckbox"]
-
-    Button["Abstract Product<br/>(Button)"]
-    Checkbox["Abstract Product<br/>(Checkbox)"]
-
-    %% Flow
-    Client --> UIFactory
-    UIFactory --> LightFactory
-    UIFactory --> DarkFactory
-
-    LightFactory --> LB
-    LightFactory --> LC
-
-    DarkFactory --> DB
-    DarkFactory --> DC
-
-    LB --> Button
-    DB --> Button
-
-    LC --> Checkbox
-    DC --> Checkbox
-
-    %% Classes
-    class Client client
-    class UIFactory,LightFactory,DarkFactory factory
-    class LB,LC,DB,DC,Button,Checkbox product
-flowchart LR
-    %% Styling
-    classDef root fill:#020617,stroke:#fbbf24,stroke-width:2px,color:#e5e7eb
-    classDef folder fill:#111827,stroke:#38bdf8,stroke-width:2px,color:#e5e7eb
-    classDef file fill:#1f2933,stroke:#34d399,stroke-width:1.5px,color:#e5e7eb
-
-    %% Nodes
-    Root["abstract-factory/"]
-
-    Factory["factory/"]
-    Products["products/"]
-    Client["client/"]
-    Readme["README.md"]
-
-    UIF["UIFactory.java"]
-    LTF["LightThemeFactory.java"]
-    DTF["DarkThemeFactory.java"]
-
-    Btn["Button.java"]
-    Cb["Checkbox.java"]
-    LB["LightButton.java"]
-    LC["LightCheckbox.java"]
-    DB["DarkButton.java"]
-    DC["DarkCheckbox.java"]
-
-    App["Application.java"]
-    Main["Main.java"]
-
-    %% Flow
-    Root --> Factory
-    Root --> Products
-    Root --> Client
-    Root --> Readme
-
-    Factory --> UIF
-    Factory --> LTF
-    Factory --> DTF
-
-    Products --> Btn
-    Products --> Cb
-    Products --> LB
-    Products --> LC
-    Products --> DB
-    Products --> DC
-
-    Client --> App
-    Client --> Main
-
-    %% Classes
-    class Root root
-    class Factory,Products,Client folder
-    class UIF,LTF,DTF,Btn,Cb,LB,LC,DB,DC,App,Main,Readme file
+```text
+Client (Application)
+        |
+        v
+Abstract Factory (UIFactory)
+        |
+        +--------------------+
+        |                    |
+LightThemeFactory     DarkThemeFactory
+        |                    |
+   +----+----+         +----+----+
+   |         |         |         |
+LightButton LightCheckbox DarkButton DarkCheckbox
+        |         |         |         |
+        +---------+---------+---------+
+                  |
+          Abstract Products
+          (Button, Checkbox)
 
