@@ -94,23 +94,25 @@ This allows the system to:
 ---
 
 ## 🏗️ Design Structure
-**
-Client
-↓
-Abstract Factory (UIFactory)
-↓
-Concrete Factories
-├── LightThemeFactory
-└── DarkThemeFactory
-↓
-Abstract Products
-├── Button
-└── Checkbox
-↓
-Concrete Products
-├── LightButton / DarkButton
-└── LightCheckbox / DarkCheckbox
-**
+
+```mermaid
+flowchart TD
+    Client --> UIFactory
+    UIFactory --> LightThemeFactory
+    UIFactory --> DarkThemeFactory
+
+    LightThemeFactory --> LightButton
+    LightThemeFactory --> LightCheckbox
+
+    DarkThemeFactory --> DarkButton
+    DarkThemeFactory --> DarkCheckbox
+
+    LightButton --> Button
+    DarkButton --> Button
+
+    LightCheckbox --> Checkbox
+    DarkCheckbox --> Checkbox
+
 
 ---
 
