@@ -1,4 +1,4 @@
-package org.builderPattern;
+package creationalDesignPatterns.builderPattern;
 
 public class BurgerMeal {
 

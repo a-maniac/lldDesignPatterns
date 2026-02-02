@@ -1,4 +1,4 @@
-package org.prototypePattern;
+package creationalDesignPatterns.prototypePattern;
 
 public class Circle implements Shape{
 

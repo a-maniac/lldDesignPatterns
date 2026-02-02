@@ -1,4 +1,4 @@
-package org.designPatterns;
+package creationalDesignPatterns.designPatterns;
 
 public class TestSingleton {
 

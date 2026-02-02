@@ -1,4 +1,4 @@
-package org.abstractPattern;
+package creationalDesignPatterns.abstractPattern;
 
 public class LightThemeButton implements Button{
     @Override

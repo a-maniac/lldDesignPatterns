@@ -1,4 +1,4 @@
-package org.factoryPattern;
+package creationalDesignPatterns.factoryPattern;
 
 public class Bike implements Vehicle{
 

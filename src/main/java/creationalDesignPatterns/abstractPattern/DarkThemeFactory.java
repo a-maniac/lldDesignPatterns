@@ -1,4 +1,4 @@
-package org.abstractPattern;
+package creationalDesignPatterns.abstractPattern;
 
 public class DarkThemeFactory implements UIFactory{
     @Override
